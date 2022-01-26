@@ -1,1 +1,71 @@
-<p>question works!</p>
+<div class="container mt-5">
+  <div class="card">
+    <div class="d-flex justify-content-between p-3">
+      <div class="image">
+        <img
+          src="https://img.icons8.com/color/96/000000/angularjs.png"
+          width="90"
+          height="90"
+          alt="logo"
+        />
+      </div>
+      <div class="quiz-header">
+        <h4 class="cursive">Angular & TypeScript Quiz</h4>
+        <span class="italic">Welcome User</span>
+      </div>
+    </div>
+    <div class="d-flex justify-content-around py-3">
+      <div class="score">
+        <h5>20 Pionts</h5>
+      </div>
+      <div class="question-remain">
+        <span class="italic">Question 1 of 9</span>
+      </div>
+      <div class="timer">
+        <h5>60 sec <fa-icon [icon]="faStopwatch"></fa-icon></h5>
+      </div>
+    </div>
+    <div class="progress mb-3">
+      <div
+        class="progress-bar progress-bar-striped bg-success"
+        role="progressbar"
+        style="width: 25%"
+        aria-valuenow="25"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      ></div>
+    </div>
+    <div class="question">
+      <div class="card">
+        <h3>Example question</h3>
+      </div>
+    </div>
+    <div class="options">
+      <ol>
+        <li>
+          <div class="card">Example answer 1</div>
+        </li>
+        <li>
+          <div class="card">Example answer 2</div>
+        </li>
+        <li>
+          <div class="card">Example answer 3</div>
+        </li>
+        <li>
+          <div class="card">Example answer 4</div>
+        </li>
+      </ol>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button class="btn text-primary">
+        <fa-icon [icon]="faChevronLeft" size="3x"></fa-icon>
+      </button>
+      <button class="btn text-primary">
+        <fa-icon [icon]="faSyncAlt" size="3x"></fa-icon>
+      </button>
+      <button class="btn text-primary">
+        <fa-icon [icon]="faChevronRight" size="3x"></fa-icon>
+      </button>
+    </div>
+  </div>
+</div>
