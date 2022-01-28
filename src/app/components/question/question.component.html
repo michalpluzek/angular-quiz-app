@@ -16,7 +16,7 @@
     </div>
     <div class="d-flex justify-content-around py-3">
       <div class="score">
-        <h5>20 Pionts</h5>
+        <h5>{{ points }} Points</h5>
       </div>
       <div class="question-remain">
         <span class="italic"
@@ -44,28 +44,27 @@
     </div>
     <div class="options">
       <ol>
-        <li>
-          <div class="card">Example answer 1</div>
-        </li>
-        <li>
-          <div class="card">Example answer 2</div>
-        </li>
-        <li>
-          <div class="card">Example answer 3</div>
-        </li>
-        <li>
-          <div class="card">Example answer 4</div>
+        <li *ngFor="let option of questionList[currentQuestion]?.options">
+          <div class="card">{{ option.text }}</div>
         </li>
       </ol>
     </div>
     <div class="d-flex justify-content-between">
-      <button class="btn text-primary" (click)="previousQuestion()">
+      <button
+        class="btn text-primary"
+        (click)="previousQuestion()"
+        [disabled]="currentQuestion === 0"
+      >
         <fa-icon [icon]="faChevronLeft" size="3x"></fa-icon>
       </button>
       <button class="btn text-primary">
         <fa-icon [icon]="faSyncAlt" size="3x"></fa-icon>
       </button>
-      <button class="btn text-primary" (click)="nextQuestion()">
+      <button
+        class="btn text-primary"
+        (click)="nextQuestion()"
+        [disabled]="currentQuestion + 1 === questionList.length"
+      >
         <fa-icon [icon]="faChevronRight" size="3x"></fa-icon>
       </button>
     </div>
