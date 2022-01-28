@@ -19,10 +19,12 @@
         <h5>20 Pionts</h5>
       </div>
       <div class="question-remain">
-        <span class="italic">Question 1 of 9</span>
+        <span class="italic"
+          >Question {{ currentQuestion + 1 }} of {{ questionList.length }}</span
+        >
       </div>
       <div class="timer">
-        <h5>60 sec <fa-icon [icon]="faStopwatch"></fa-icon></h5>
+        <h5>{{ counter }} sec <fa-icon [icon]="faStopwatch"></fa-icon></h5>
       </div>
     </div>
     <div class="progress mb-3">
@@ -37,7 +39,7 @@
     </div>
     <div class="question">
       <div class="card">
-        <h3>Example question</h3>
+        <h3>{{ questionList[currentQuestion]?.questionText }}</h3>
       </div>
     </div>
     <div class="options">
@@ -57,13 +59,13 @@
       </ol>
     </div>
     <div class="d-flex justify-content-between">
-      <button class="btn text-primary">
+      <button class="btn text-primary" (click)="previousQuestion()">
         <fa-icon [icon]="faChevronLeft" size="3x"></fa-icon>
       </button>
       <button class="btn text-primary">
         <fa-icon [icon]="faSyncAlt" size="3x"></fa-icon>
       </button>
-      <button class="btn text-primary">
+      <button class="btn text-primary" (click)="nextQuestion()">
         <fa-icon [icon]="faChevronRight" size="3x"></fa-icon>
       </button>
     </div>
