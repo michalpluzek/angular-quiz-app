@@ -13,9 +13,13 @@
   <h2 class="cursive-center">All the best!!</h2>
   <div class="name col-md-4 my-3">
     <label for="">Enter your name:</label>
-    <input type="text" class="form-control" />
+    <input #name type="text" class="form-control" />
   </div>
-  <button class="btn btn-primary btn-lg" routerLink="/question">
+  <button
+    class="btn btn-primary btn-lg"
+    routerLink="/question"
+    (click)="startQuiz()"
+  >
     Start the Quiz!!
   </button>
 </div>

@@ -17,7 +17,11 @@ export class QuestionComponent implements OnInit {
   faChevronRight = faChevronRight;
   faSyncAlt = faSyncAlt;
 
+  public name: string = '';
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = localStorage.getItem('name')!;
+  }
 }
