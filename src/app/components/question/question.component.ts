@@ -28,6 +28,7 @@ export class QuestionComponent implements OnInit {
   wrongAnswer: number = 0;
   interval$: any;
   progress: string = '0';
+  isQuizCompleted: boolean = false;
 
   constructor(private questionsService: QuestionService) {}
 
@@ -62,6 +63,7 @@ export class QuestionComponent implements OnInit {
 
     setTimeout(() => {
       currentQue < this.questionList.length && this.currentQuestion++;
+      currentQue === this.questionList.length && (this.isQuizCompleted = true);
       this.getProgressPercent();
       this.resetCounter();
     }, 1000);
@@ -97,6 +99,7 @@ export class QuestionComponent implements OnInit {
     this.getAllQuestions();
     this.points = 0;
     this.currentQuestion = 0;
+    this.isQuizCompleted = false;
   }
 
   getProgressPercent() {
