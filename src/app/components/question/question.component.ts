@@ -60,6 +60,8 @@ export class QuestionComponent implements OnInit {
       this.wrongAnswer++;
     }
     currentQue < this.questionList.length && this.currentQuestion++;
+    this.getProgressPercent();
+    this.resetCounter();
   }
 
   startCounter() {
@@ -92,5 +94,12 @@ export class QuestionComponent implements OnInit {
     this.getAllQuestions();
     this.points = 0;
     this.currentQuestion = 0;
+  }
+
+  getProgressPercent() {
+    this.progress =
+      (this.currentQuestion / (this.questionList.length - 1)) * 100 + '';
+
+    return this.progress;
   }
 }
