@@ -29,6 +29,7 @@ export class QuestionComponent implements OnInit {
   interval$: any;
   progress: string = '0';
   isQuizCompleted: boolean = false;
+  isCounterHasBeenReset: boolean = true;
 
   constructor(private questionsService: QuestionService) {}
 
@@ -53,6 +54,7 @@ export class QuestionComponent implements OnInit {
   }
 
   answer(currentQue: number, option: any) {
+    if (!this.isCounterHasBeenReset) return;
     if (option.correct) {
       this.points += 10;
       this.correctAnswer++;
@@ -60,6 +62,8 @@ export class QuestionComponent implements OnInit {
       this.points -= 10;
       this.wrongAnswer++;
     }
+
+    this.isCounterHasBeenReset = false;
 
     setTimeout(() => {
       currentQue < this.questionList.length && this.currentQuestion++;
@@ -91,6 +95,7 @@ export class QuestionComponent implements OnInit {
   resetCounter() {
     this.stopCounter();
     this.counter = 60;
+    this.isCounterHasBeenReset = true;
     this.startCounter();
   }
 
