@@ -55,11 +55,7 @@ export class QuestionComponent implements OnInit {
     this.currentQuestion > 0 && this.currentQuestion--;
   }
 
-<<<<<<< HEAD
   answer(currentQue: number, option: OptionInterface): void {
-=======
-  answer(currentQue: number, option: OptionInterface) {
->>>>>>> 21f1fde290a76e9ce515dd028a6f64ce74f72183
     if (!this.isCounterHasBeenReset) return;
     if (option.correct) {
       this.points += 10;
