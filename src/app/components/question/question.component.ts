@@ -5,8 +5,10 @@ import {
   faChevronRight,
   faSyncAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { QuestionService } from 'src/app/service/question.service';
+import { OptionInterface } from 'src/app/types/option.interface';
+import { QuestionInterface } from 'src/app/types/question.interface';
 
 @Component({
   selector: 'app-question',
@@ -19,14 +21,14 @@ export class QuestionComponent implements OnInit {
   faChevronRight = faChevronRight;
   faSyncAlt = faSyncAlt;
 
-  public name: string = '';
-  public questionList: any = [];
-  public currentQuestion: number = 0;
-  public points: number = 0;
+  name: string = '';
+  questionList: QuestionInterface[] = [];
+  currentQuestion: number = 0;
+  points: number = 0;
   counter: number = 60;
   correctAnswer: number = 0;
   wrongAnswer: number = 0;
-  interval$: any;
+  interval$!: Subscription;
   progress: string = '0';
   isQuizCompleted: boolean = false;
   isCounterHasBeenReset: boolean = true;
@@ -53,7 +55,7 @@ export class QuestionComponent implements OnInit {
     this.currentQuestion > 0 && this.currentQuestion--;
   }
 
-  answer(currentQue: number, option: any) {
+  answer(currentQue: number, option: OptionInterface) {
     if (!this.isCounterHasBeenReset) return;
     if (option.correct) {
       this.points += 10;
