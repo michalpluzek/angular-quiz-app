@@ -5,8 +5,10 @@ import {
   faChevronRight,
   faSyncAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { QuestionService } from 'src/app/service/question.service';
+import { OptionInterface } from 'src/app/types/option.interface';
+import { QuestionInterface } from 'src/app/types/question.interface';
 
 @Component({
   selector: 'app-question',
@@ -19,14 +21,14 @@ export class QuestionComponent implements OnInit {
   faChevronRight = faChevronRight;
   faSyncAlt = faSyncAlt;
 
-  public name: string = '';
-  public questionList: any = [];
-  public currentQuestion: number = 0;
-  public points: number = 0;
+  name: string = '';
+  questionList: QuestionInterface[] = [];
+  currentQuestion: number = 0;
+  points: number = 0;
   counter: number = 60;
   correctAnswer: number = 0;
   wrongAnswer: number = 0;
-  interval$: any;
+  interval$!: Subscription;
   progress: string = '0';
   isQuizCompleted: boolean = false;
   isCounterHasBeenReset: boolean = true;
@@ -39,21 +41,21 @@ export class QuestionComponent implements OnInit {
     this.startCounter();
   }
 
-  getAllQuestions() {
+  getAllQuestions(): void {
     this.questionsService.getQuestionJSON().subscribe((res) => {
       this.questionList = res.questions;
     });
   }
 
-  nextQuestion() {
+  nextQuestion(): void {
     this.currentQuestion < 8 && this.currentQuestion++;
   }
 
-  previousQuestion() {
+  previousQuestion(): void {
     this.currentQuestion > 0 && this.currentQuestion--;
   }
 
-  answer(currentQue: number, option: any) {
+  answer(currentQue: number, option: OptionInterface): void {
     if (!this.isCounterHasBeenReset) return;
     if (option.correct) {
       this.points += 10;
@@ -73,7 +75,7 @@ export class QuestionComponent implements OnInit {
     }, 1000);
   }
 
-  startCounter() {
+  startCounter(): void {
     this.interval$ = interval(1000).subscribe((val) => {
       this.counter--;
       if (this.counter === 0) {
@@ -87,19 +89,19 @@ export class QuestionComponent implements OnInit {
     }, 600000);
   }
 
-  stopCounter() {
+  stopCounter(): void {
     this.interval$.unsubscribe();
     this.counter = 0;
   }
 
-  resetCounter() {
+  resetCounter(): void {
     this.stopCounter();
     this.counter = 60;
     this.isCounterHasBeenReset = true;
     this.startCounter();
   }
 
-  resetQuiz() {
+  resetQuiz(): void {
     this.resetCounter();
     this.getAllQuestions();
     this.points = 0;
@@ -107,10 +109,8 @@ export class QuestionComponent implements OnInit {
     this.isQuizCompleted = false;
   }
 
-  getProgressPercent() {
+  getProgressPercent(): void {
     this.progress =
       (this.currentQuestion / (this.questionList.length - 1)) * 100 + '';
-
-    return this.progress;
   }
 }

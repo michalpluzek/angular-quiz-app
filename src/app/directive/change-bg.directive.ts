@@ -10,7 +10,7 @@ import {
   selector: '[appChangeBg]',
 })
 export class ChangeBgDirective {
-  @Input() isCorrect: Boolean = false;
+  @Input() isCorrect: Boolean | undefined = false;
 
   constructor(private el: ElementRef, private render: Renderer2) {}
 
