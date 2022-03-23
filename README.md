@@ -1,6 +1,6 @@
 # AngularQuizApp
-
-Project from YT https://www.youtube.com/watch?v=ITPjL7L4sqU&t=2440s&ab_channel=Let%27sProgram
+Design taken from YT + my modifications
+https://www.youtube.com/watch?v=ITPjL7L4sqU&t=2440s&ab_channel=Let%27sProgram
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
